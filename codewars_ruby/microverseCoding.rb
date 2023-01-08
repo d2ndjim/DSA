@@ -247,16 +247,12 @@ end
 
 def domain_name(url)
   return just the domain name
-  remove the http:// or https://
-  remove the www.
-  remove the .com or .co.uk or .org etc
-  split the string by the . and return the first element
   url.gsub("http://", "").gsub("https://", "").gsub("www.", "").split(".")[0]
 
-  ANOTHER METHOD 1
+  # ANOTHER METHOD 1
   url.gsub(/(https?:\/\/)?(www\.)?/, '').split('.')[0]
 
-  ANOTHER METHOD 2
+  # ANOTHER METHOD 2
   require 'uri'
   URI.parse(url).host.split('.').first 
 
@@ -275,7 +271,7 @@ def solution(str)
   end
   str_array.map {|x| x.join("")}
 
-  ANOTHER METHOD
+  # ANOTHER METHOD
   (str + '_').scan /../
 end
 
@@ -283,7 +279,6 @@ end
 
 
 def pig_it text
-  ...
   result = []
   first_arr = text.split(" ")
   first_arr.each do |item|
@@ -299,7 +294,7 @@ def pig_it text
   result.join(" ")
 
 
-  ANOTHER METHOD
+  # ANOTHER METHOD
   text_array = text.split(" ")
   text_array.map! do |word|
     if word.match?(/[[:punct:]]/)
@@ -310,10 +305,10 @@ def pig_it text
   end
   text_array.join(" ")
 
-  ANOTHER METHOD
+  # ANOTHER METHOD
   text.gsub(/(\w)(\w+)*/, '\2\1ay')
 
-  ANOTHER METHOD
+  # ANOTHER METHOD
   text.gsub(/(\w)(\w+)*/, '\2\1ay').gsub(/(\w+)ay/, '\1ay')
 
 end
@@ -379,11 +374,22 @@ def score( dice )
 end
 # print score([2, 4, 4, 5, 4])
 
-prereq_courses = [
-	["Data Structures", "Algorithms"],
-	["Foundations of Computer Science", "Operating Systems"],
-	["Computer Networks", "Computer Architecture"],
-	["Computer Architecture", "Data Structures"],
-	["Algorithms", "Foundations of Computer Science"],
-	["Software Design", "Computer Networks"]
+prereq_courses = [  ["Data Structures", "Algorithms"],
+  ["Foundations of Computer Science", "Operating Systems"],
+  ["Computer Networks", "Computer Architecture"],
+  ["Computer Architecture", "Data Structures"],
+  ["Algorithms", "Foundations of Computer Science"],
+  ["Software Design", "Computer Networks"]
 ]
+
+def find_single_occurrence_in_first_index(arr)
+  counts = Hash.new(0)
+  arr.each do |sub_arr|
+    counts[sub_arr.first] += 1
+    counts[sub_arr.last] += 1
+  end
+  counts.select { |_k, v| v == 1 }.keys.last
+end
+
+single_occurrence = find_single_occurrence_in_first_index(prereq_courses)
+puts single_occurrence
