@@ -71,16 +71,39 @@ function canJump(nums) {
 // console.log(canJump([0, 3, 1, 1, 4]));
 
 
-// function visionValue(num) {
-//   let str = num.toString();
-//   let arr = str.split("");
-//   let sum = 0;
-//   for (let i = 0; i < arr.length; i++) {
-//     sum += Number(arr[i]);
-//   }
-//   if (sum > 9) {
-//     return visionValue(sum);
-//   }
-//   return sum;
-// }
-// console.log(visionValue(12345));
+//QUESTION 5
+function twoSum(nums, target) {
+  let map = {};
+  for (let i = 0; i < nums.length; i++) {
+    let complement = target - nums[i];
+    if (map[complement] !== undefined) {
+      return [map[complement], i];
+    }
+    map[nums[i]] = i;
+  }
+
+  // Alternative solution
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[i] + nums[j] === target) {
+        return [i, j];
+      }
+    }
+  } 
+}
+
+// console.log(twoSum([2, 7, 11, 15], 9));
+
+function longestCommonPrefix(strs) {
+  if (strs.length === 0) return "";
+  let prefix = strs[0];
+  for (let i = 1; i < strs.length; i++) {
+    while (strs[i].indexOf(prefix) !== 0) {
+      prefix = prefix.substring(0, prefix.length - 1);
+      if (prefix === "") return "";
+    }
+  }
+  return prefix;
+}
+
+console.log(longestCommonPrefix(["flower", "flow", "flight"]));
