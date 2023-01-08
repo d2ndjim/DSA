@@ -102,8 +102,9 @@ function longestCommonPrefix(strs) {
       prefix = prefix.substring(0, prefix.length - 1);
       if (prefix === "") return "";
     }
-  }
+  } 
   return prefix;
+
 }
 
 console.log(longestCommonPrefix(["flower", "flow", "flight"]));
