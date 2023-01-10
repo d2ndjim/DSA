@@ -392,4 +392,15 @@ def find_single_occurrence_in_first_index(arr)
 end
 
 single_occurrence = find_single_occurrence_in_first_index(prereq_courses)
-puts single_occurrence
+# puts single_occurrence
+
+# regex = /(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])^[a-zA-Z0-9]{6,}$/
+
+def cakes(recipe, available)
+  # ANOTHER METHOD
+  recipe.map { |k, v| available[k] ? available[k] / v : 0 }.min
+
+end
+
+print cakes({flour: 500, sugar: 200, eggs: 1}, {flour: 1200, sugar: 1200, eggs: 5, milk: 200})
+
