@@ -397,10 +397,38 @@ single_occurrence = find_single_occurrence_in_first_index(prereq_courses)
 # regex = /(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])^[a-zA-Z0-9]{6,}$/
 
 def cakes(recipe, available)
-  # ANOTHER METHOD
   recipe.map { |k, v| available[k] ? available[k] / v : 0 }.min
 
 end
 
-print cakes({flour: 500, sugar: 200, eggs: 1}, {flour: 1200, sugar: 1200, eggs: 5, milk: 200})
+# print cakes({flour: 500, sugar: 200, eggs: 1}, {flour: 1200, sugar: 1200, eggs: 5, milk: 200})
+
+def is_interesting(number, awesome_phrases) 
+  if number < 98
+    return 0
+  elsif number == 98
+    return 1
+  elsif number == 99
+    return 2
+  end
+  if number.to_s == number.to_s.reverse
+    return 2
+  elsif (number + 1).to_s == (number + 1).to_s.reverse
+    return 1
+  elsif (number + 2).to_s == (number + 2).to_s.reverse
+    return 1
+  elsif awesome_phrases.include?(number)
+    return 2
+  elsif awesome_phrases.include?(number + 1)
+    return 1
+  elsif awesome_phrases.include?(number + 2)
+    return 1
+  else
+    return 0
+  end
+
+  
+end
+
+print is_interesting(1336, [1337, 256])
 
